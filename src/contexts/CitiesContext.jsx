@@ -80,10 +80,14 @@ function CitiesProvider({ children }) {
       dispatch({ type: "loading" });
 
       try {
-        const res = await fetch(`${BASE_URL}/cities/${id}`);
-        const data = await res.json();
-        console.log(data);
-        dispatch({ type: "city/loaded", payload: data });
+        // const res = await fetch(`${BASE_URL}/cities/${id}`);
+        // const data = await res.json();
+        // console.log(data);
+        // dispatch({ type: "city/loaded", payload: data });
+        dispatch({
+          type: "city/loaded",
+          payload: citiesData.filter((city) => city.id === id),
+        });
       } catch {
         dispatch({
           type: "rejected",
@@ -97,13 +101,14 @@ function CitiesProvider({ children }) {
   async function createCity(newCity) {
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(`${BASE_URL}/cities`, {
-        method: "POST",
-        body: JSON.stringify(newCity),
-        headers: { "Content-Type": "application/json" },
-      });
-      const data = await res.json();
-      dispatch({ type: "city/created", payload: data });
+      // const res = await fetch(`${BASE_URL}/cities`, {
+      //   method: "POST",
+      //   body: JSON.stringify(newCity),
+      //   headers: { "Content-Type": "application/json" },
+      // });
+      // const data = await res.json();
+      // dispatch({ type: "city/created", payload: data });
+      dispatch({ type: "city/created", payload: [...citiesData, newCity] });
     } catch {
       dispatch({
         type: "rejected",
@@ -115,10 +120,14 @@ function CitiesProvider({ children }) {
   async function deleteCity(id) {
     dispatch({ type: "loading" });
     try {
-      await fetch(`${BASE_URL}/cities/${id}`, {
-        method: "DELETE",
+      // await fetch(`${BASE_URL}/cities/${id}`, {
+      //   method: "DELETE",
+      // });
+      // dispatch({ type: "city/deleted", payload: id });
+      dispatch({
+        type: "city/deleted",
+        payload: citiesData.filter((city) => city.id !== id),
       });
-      dispatch({ type: "city/deleted", payload: id });
     } catch {
       dispatch({
         type: "rejected",

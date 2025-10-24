@@ -1,5 +1,6 @@
 import { useCallback, useReducer } from "react";
 import { createContext, useEffect, useContext } from "react";
+import citiesData from "../../data/cities.json";
 
 const BASE_URL = "http://localhost:8000";
 
@@ -58,9 +59,10 @@ function CitiesProvider({ children }) {
     async function fetchCities() {
       dispatch({ type: "loading" });
       try {
-        const res = await fetch(`${BASE_URL}/cities`);
-        const data = await res.json();
-        dispatch({ type: "cities/loaded", payload: data });
+        // const res = await fetch(`${BASE_URL}/cities`);
+        // const data = await res.json();
+        // dispatch({ type: "cities/loaded", payload: data });
+        dispatch({ type: "cities/loaded", payload: citiesData });
       } catch {
         dispatch({
           type: "rejected",

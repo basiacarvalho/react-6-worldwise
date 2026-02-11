@@ -30,7 +30,6 @@
 ### Links
 
 - Source code repository URL: [Github](https://github.com/basiacarvalho/react-6-react-worlwise)
-- Live Site URL: [Live demo](https://basiacarvalho.github.io/react-6-worlwise/)
 
 ### Visuals
 
